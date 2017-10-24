@@ -8,16 +8,16 @@ pthread_t tid1;
 pthread_t tid2;
 pthread_t tid3;
 int status;
-long long input1, input2, input3;
+long long input[4];
 
 void* fact1(void *arg){
     status = 0;
     long long result=1;
     int i;
-    for (i=1;i<=input1;i++) result*=i;
+    for (i=1;i<=input[1];i++) result*=i;
     
     status=1;
-    printf("Hasil %lld! = %lld\n", input1, result);
+    printf("Hasil %lld! = %lld\n", input[1], result);
     return NULL;
 }
 
@@ -25,10 +25,10 @@ void* fact2(void *arg){
     while(status!=1){}
     long long result=1;
     int i;
-    for (i=1;i<=input2;i++) result*=i;
+    for (i=1;i<=input[2];i++) result*=i;
     
     status=2;
-    printf("Hasil %lld! = %lld\n", input2, result);
+    printf("Hasil %lld! = %lld\n", input[2], result);
     return NULL;
 }
 
@@ -36,14 +36,25 @@ void* fact3(void *arg){
     while(status!=2){}
     long long result=1;
     int i;
-    for (i=1;i<=input3;i++) result*=i;
+    for (i=1;i<=input[3];i++) result*=i;
     
-    printf("Hasil %lld! = %lld\n", input3, result);
+    printf("Hasil %lld! = %lld\n", input[3], result);
     return NULL;
 }
 
 int main(){
-    scanf("%lld %lld %lld",&input1,&input2,&input3);
+    
+    scanf("%lld %lld %lld",&input[1],&input[2],&input[3]);
+    int tmp=0,i=3,j;
+    while(i--){
+        for(j=1;j<=i;j++){
+            if(input[j]>input[j+1]){
+            tmp = input[j+1]; 
+            input[j+1]=input[j]; 
+            input[j]=tmp;
+            }
+        }
+    }
 
     pthread_create(&(tid1),NULL,&fact1,NULL);
     pthread_create(&(tid2),NULL,&fact2,NULL);
