@@ -8,6 +8,7 @@ int main(){
     int input;
     int barang[7] = {0,0,0,0,0,0,0,0};
     while(1){
+        system("clear");
         printf("Siapakah Anda?\n");
         printf("1. Penjual\n");
         printf("2. Pembeli\n");
@@ -22,7 +23,7 @@ int main(){
                 printf("Masukkan perintah : ");
                 scanf("%d",&perintah);
                 if(perintah==1){
-                    system("clear");
+                    //system("clear");
                     for(int i=1;i<=6;i++){
                         if(barang[i]==0) continue;//printf("barang[%d] = kosong\n",i);
                         else{
@@ -36,7 +37,7 @@ int main(){
                     }
                 }
                 else if(perintah==2){
-                    system("clear");
+                    //system("clear");
                     char updatebarang[11];
                     int jumlahbarang;
                     printf("Pilih barang yang akan di tambah stock:\n");
@@ -73,7 +74,7 @@ int main(){
                 printf("Masukkan perintah : ");
                 scanf("%d",&perintah);
                 if(perintah==1){
-                    system("clear");
+                    //system("clear");
                     for(int i=1;i<=6;i++){
                         if(i==1) printf("MP4A1 = %d\n",barang[1]);
                         else if(i==2) printf("PM2-V1 = %d\n",barang[2]);
@@ -84,7 +85,7 @@ int main(){
                     }
                 }
                 else if(perintah==2){
-                    system("clear");
+                    //system("clear");
                     char updatebarang[11];
                     int jumlahbarang;
                     printf("Pilih barang yang akan di beli:\n");
