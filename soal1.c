@@ -36,6 +36,23 @@ int main(){
             }
             else{
                 //system("clear");
+                char updatebarang[11];
+                int jumlahbarang;
+                printf("Pilih barang yang akan di tambah stock:\n");
+                printf("Format menambah stock [nama barang] [jumlah barang]\n");
+                printf("MP4A1\n");
+                printf("PM2-V1\n");
+                printf("SPR-3\n");
+                printf("SS2-V5\n");
+                printf("SPG1-V3\n");
+                printf("MINE\n");
+                scanf("%s %d",&updatebarang,&jumlahbarang);
+                if(updatebarang=='MP4A1') barang[1]+=jumlahbarang;
+                else if(updatebarang=='PM2-V1') barang[2]+=jumlahbarang;
+                else if(updatebarang=='SPR-3') barang[3]+=jumlahbarang;
+                else if(updatebarang=='SS2-V5') barang[4]+=jumlahbarang;
+                else if(updatebarang=='SPG1-V3') barang[5]+=jumlahbarang;
+                else if(updatebarang=='MINE') barang[6]+=jumlahbarang;
             }
         }
     }
