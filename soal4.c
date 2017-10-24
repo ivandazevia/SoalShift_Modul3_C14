@@ -32,12 +32,24 @@ void* fact2(void *arg){
     return NULL;
 }
 
+void* fact3(void *arg){
+    while(status!=2){}
+    long long result=1;
+    int i;
+    for (i=1;i<=input3;i++) result*=i;
+    
+    printf("Hasil %lld! = %lld\n", input3, result);
+    return NULL;
+}
+
 int main(){
     scanf("%lld %lld %lld",&input1,&input2,&input3);
 
     pthread_create(&(tid1),NULL,&fact1,NULL);
     pthread_create(&(tid2),NULL,&fact2,NULL);
+    pthread_create(&(tid3),NULL,&fact3,NULL);
 
     pthread_join(tid1,NULL);
     pthread_join(tid2,NULL);
+    pthread_join(tid3,NULL);
 }
