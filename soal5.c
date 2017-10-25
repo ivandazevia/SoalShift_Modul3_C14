@@ -34,6 +34,10 @@ void* ifah(void *arg){
 }
 
 int main(){
+    pthread_create(&(tid1),NULL,&fina,NULL);
+    pthread_create(&(tid2),NULL,&ifah,NULL);
     
+    pthread_join(tid1,NULL);
+    pthread_join(tid2,NULL);
 }
 
