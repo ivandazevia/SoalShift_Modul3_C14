@@ -18,6 +18,14 @@ void* kepiting_lapar (void *arg){
         if(kepiting<=0) printf("Kepiting mati :(\n");
     }
 }
+void* lohan_lapar (void *arg){
+    while(1){
+        sleep(10);
+        lohan-=15;
+        if(lohan<=0) printf("Lohan mati :(\n");
+    }
+}
+
 
 int main(){
     
