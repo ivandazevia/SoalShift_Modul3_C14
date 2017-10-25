@@ -3,6 +3,8 @@
 #include<pthread.h>
 #include<stdlib.h>
 #include<unistd.h>
+#include <sys/wait.h>
+#include <sys/types.h>
 
 pthread_t tid1;
 pthread_t tid2;
@@ -12,36 +14,25 @@ int jumlahifah=0;
 
 void* fina(void *arg){
     status = 0;
-    FILE *fileinput;
-    fileinput = fopen("/home/zevi/SoalShift_Modul3_C14/Novel.txt","r");
-    char tmp[400];
-    
-    while(fileinput!=NULL && fgets(tmp, sizeof(tmp), fileinput)!=NULL){
-        //fgets(tmp, sizeof(tmp),fileinput);
-        if(strstr(tmp,"Fina")){
-            //printf("Fina\n");
-            jumlahfina++;
-        }
-    }
-    fclose(fileinput);
-    printf("Fina = %d\n",jumlahfina);
+    pid_t child;
+    child = fork();
+    if(child == 0) printf("Fina : ");
+    else{
+        while((wait(&status)) > 0);  
+        system("grep -o Fina Novel.txt | wc -l"); 
+    } 
     status =1;
 }
 
 void* ifah(void *arg){
     while(status!=1){}
-    FILE *fileinput;
-    fileinput = fopen("/home/zevi/SoalShift_Modul3_C14/Novel.txt","r");
-    char tmp[400];
-    
-    while(fileinput!=NULL && fgets(tmp, sizeof(tmp), fileinput)!=NULL){
-        if(strstr(tmp,"Ifah")){
-            //printf("Ifah\n");
-            jumlahifah++;
-        }
-    }
-    fclose(fileinput);
-    printf("Ifah = %d\n",jumlahifah);
+    pid_t child;
+    child = fork();
+    if(child == 0) printf("Ifah : ");
+    else{
+        while((wait(&status)) > 0);  
+        system("grep -o Ifah Novel.txt | wc -l");  
+    } 
 }
 
 int main(){
