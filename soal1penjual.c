@@ -2,6 +2,8 @@
 #include <sys/ipc.h>
 #include <sys/shm.h>
 #include <unistd.h>
+#include<string.h>
+#include<stdlib.h>
 
 int main(){
     key_t key = 1234;
@@ -19,6 +21,7 @@ int main(){
         printf("Masukkan perintah : ");
         scanf("%d",&perintah);
         if(perintah==1){
+            printf("\nStock barang saat ini adalah sebagai berikut : \n");
             for(int i=1;i<=6;i++){
                 if(barang[i]==0) continue;//printf("barang[%d] = kosong\n",i);
                 else{
@@ -27,9 +30,33 @@ int main(){
                     else if(i==3) printf("SPR-3 = %d\n",barang[3]);
                     else if(i==4) printf("SS2-V5 = %d\n",barang[4]);
                     else if(i==5) printf("SPG1-V3 = %d\n",barang[5]);
-                    else if(i==6) printf("MINE = %d\n",barang[6]);
+                    else if(i==6) printf("MINE = %d\n\n",barang[6]);
                 }
             }
+        }
+        else if(perintah==2){
+            char updatebarang[11];
+            int jumlahbarang;
+            printf("\nPilih barang yang akan di tambah stock:\n");
+            printf("Format menambah stock [nama barang] [jumlah barang]\n");
+            printf("MP4A1\n");
+            printf("PM2-V1\n");
+            printf("SPR-3\n");
+            printf("SS2-V5\n");
+            printf("SPG1-V3\n");
+            printf("MINE\n\n");
+            scanf("%s",updatebarang);
+            getchar();
+           // printf("%s\n",updatebarang);
+            scanf("%d",&jumlahbarang);
+            //printf("%s %d\n",updatebarang,jumlahbarang);
+
+            if(strcmp(updatebarang, "MP4A1") == 0) barang[1]+=jumlahbarang;
+            else if(strcmp(updatebarang, "PM2-V1") == 0) barang[2]+=jumlahbarang;
+            else if(strcmp(updatebarang, "SPR-3") == 0) barang[3]+=jumlahbarang;
+            else if(strcmp(updatebarang, "SS2-V5") == 0) barang[4]+=jumlahbarang;
+            else if(strcmp(updatebarang, "SPG1-V3") == 0) barang[5]+=jumlahbarang;
+            else if(strcmp(updatebarang, "MINE") == 0) barang[6]+=jumlahbarang;        
         }
     }
     shmdt(barang);
