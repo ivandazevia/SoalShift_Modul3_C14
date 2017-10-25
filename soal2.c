@@ -25,13 +25,35 @@ void* pemain1milih(void *arg){
     }
     
     printf("Sekarang giliran %s untuk menebak\n",pemain2);
-    printf("Silahkan %s untuk menebak 4 lubang yang aman\n");
+    printf("Silahkan %s untuk menebak 4 lubang yang aman\n",pemain2);
     for(int i=1;i<=4;i++){
         scanf("%d",&lubang);
         if(ranjau[1][i]==1) score1++;
         else score2++;
     }
-    
+    status = 1;
+}
+
+void* pemain2milih(void *arg){
+    while(status!=1){};
+    int lubang,jml;
+    printf("Giliran %s untuk bermain\n",pemain2);
+    printf("Ada berapa banyak ranjau yang ingin anda letakkan?\n");
+    scanf("%d",&jml);
+    printf("Silahkan masukkan 1-%d ranjau pada lubang 1-16\n",jml);
+    for(int i=1;i<=jml;i++){
+        scanf("%d",&lubang);    
+        if(ranjau[2][i]!=0) printf("lubang sudah terisi\n");
+        else ranjau[2][i] = 1;
+    }
+
+    printf("Sekarang giliran %s untuk menebak\n",pemain1);
+    printf("Silahkan %s untuk menebak 4 lubang yang aman\n",pemain1);
+    for(int i=1;i<=4;i++){
+        scanf("%d",&lubang);
+        if(ranjau[2][i]==1) score2++;
+        else score1++;
+    }
 }
 
 int main(){
