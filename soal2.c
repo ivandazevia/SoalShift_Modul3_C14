@@ -8,6 +8,7 @@ char pemain1[15];
 char pemain2[15];
 int status;
 int score1 = 0, score2 = 0;
+int jmllubang=0;
 int ranjau[3][17];
 pthread_t tid1,tid2;
 
@@ -21,7 +22,10 @@ void* pemain1milih(void *arg){
     for(int i=1;i<=jml;i++){
         scanf("%d",&lubang);    
         if(ranjau[1][i]!=0) printf("lubang sudah terisi\n");
-        else ranjau[1][i] = 1;
+        else {
+            ranjau[1][i] = 1;
+            jmllubang++;
+        }
     }
     
     printf("Sekarang giliran %s untuk menebak\n",pemain2);
@@ -44,7 +48,10 @@ void* pemain2milih(void *arg){
     for(int i=1;i<=jml;i++){
         scanf("%d",&lubang);    
         if(ranjau[2][i]!=0) printf("lubang sudah terisi\n");
-        else ranjau[2][i] = 1;
+        else {
+            ranjau[2][i] = 1;
+            jmllubang++;        
+        }
     }
 
     printf("Sekarang giliran %s untuk menebak\n",pemain1);
@@ -66,4 +73,24 @@ int main(){
 	scanf("%s",pemain2);
     getchar();
     printf("%s anda adalah pemain 2\n\n",pemain2);
+    
+    while(1){
+        for(int i=1;i<=16;i++){
+            ranjau[1][i]=0;
+            ranjau[2][i]=0;        
+        }  
+        pthread_create(&(tid1),NULL,&pemain1main,NULL); 
+        pthread_create(&(tid2),NULL,&pemain2main,NULL);
+        
+        pthread_join(tid1, NULL);
+    	pthread_join(tid2, NULL); 
+        if(skor1==10 || skor2 == 10){
+            printf("Game berakhir karena salah satu pemain sudah mendapatkan 10 poin\n");
+            exit(0);
+        }
+        else if(skor1<10 && jmllubang = 16 || skor2<10 && jmllubang = 16){
+            printf("Game berakhir, karena lubang terisi penuh dan belum ada pemain yang mendapatkan skor 10\n");
+            exit(0);
+        }
+    }
 }
