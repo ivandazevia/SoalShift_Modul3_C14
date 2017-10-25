@@ -20,5 +20,20 @@ void* fina(void *arg){
     printf("Fina = %d\n",jumlahfina);
 }
 
+void* ifah(void *arg){
+    FILE *fileinput;
+    fileinput = fopen("/home/zevi/SoalShift_Modul3_C14/Novel.txt","r");
+    char tmp[6000];
+    int jumlahifah=0;
+    fgets(tmp, sizeof(tmp),fileinput);
+    if(strstr(tmp,"Ifah")){
+        jumlahifah++;
+    }
+    fclose(fileinput);
+    printf("Ifah = %d\n",jumlahifah);
+}
 
+int main(){
+    
+}
 
