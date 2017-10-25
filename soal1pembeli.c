@@ -30,6 +30,31 @@ int main(){
                 else if(i==6) printf("MINE = %d\n\n",barang[6]);
             }
         }
+        else if(perintah==2){
+            char updatebarang[11];
+            int jumlahbarang;
+            printf("\nPilih barang yang akan di beli:\n");
+            printf("Format membeli [nama barang] [jumlah barang]\n");
+            printf("MP4A1\n");
+            printf("PM2-V1\n");
+            printf("SPR-3\n");
+            printf("SS2-V5\n");
+            printf("SPG1-V3\n");
+            printf("MINE\n\n");
+            scanf("%s",updatebarang);
+            getchar();
+           // printf("%s\n",updatebarang);
+            scanf("%d",&jumlahbarang);
+            //printf("%s %d\n",updatebarang,jumlahbarang);
+
+            if(strcmp(updatebarang, "MP4A1") == 0 && barang[1]>=jumlahbarang) barang[1]-=jumlahbarang;
+            else if(strcmp(updatebarang, "PM2-V1") == 0 && barang[2]>=jumlahbarang) barang[2]-=jumlahbarang;
+            else if(strcmp(updatebarang, "SPR-3") == 0 && barang[3]>=jumlahbarang) barang[3]-=jumlahbarang;
+            else if(strcmp(updatebarang, "SS2-V5") == 0 && barang[4]>=jumlahbarang) barang[4]-=jumlahbarang;
+            else if(strcmp(updatebarang, "SPG1-V3") == 0 && barang[5]>=jumlahbarang) barang[5]-=jumlahbarang;
+            else if(strcmp(updatebarang, "MINE") == 0 && barang[6]>=jumlahbarang) barang[6]-=jumlahbarang;
+            else printf("\nStock barang yang anda pilih tidak mencukupi\n");
+        }
     }
     shmdt(barang);
     shmctl(shmid, IPC_RMID, NULL);
